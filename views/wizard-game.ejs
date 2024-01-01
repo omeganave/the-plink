@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wizard</title>
+    </head>
+    <body>
+        <%- include ('./partials/nav.ejs') %>
+        <h1>Players:</h1>
+        <ul>
+            <% for (let i = 0; i < numPlayers; i++) { %>
+                <li>Player <%= i+1 %>: <%= playerNames[i] %></li>
+            <% } %>
+        </ul>
+
+        <h2>Round <%= round %></h2>
+        <form action="/collect-wizard-bids" method="POST">
+            <input type="hidden" name="numPlayers" value="<%= numPlayers %>">
+            <input type="hidden" name="round" value="<%= round %>">
+            <input type="hidden" name="maxRounds" value="<%= maxRounds %>">
+
+            <% for (let i = 0; i < numPlayers; i++) { %>
+                <label for="bid<%= i+1 %>">Bid for <%= playerNames[i+1] %>:</label>
+                <input type="number" name="bid<%= i+1 %>" id="bid<%= i+1 %>" min="0" max="<%= round %>" required>
+            <% } %>
+
+            <button type="submit">Submit Bids</button>
+            </form>
+    </body>
+</html>

@@ -7,6 +7,17 @@
     </head>
     <body>
         <%- include ('./partials/nav.ejs') %>
-        <h1>Wizard</h1>
+        <h1>Wizard Scoring System</h1>
+        <form action="/wizard-game" method="POST" id="startGameForm">
+            <label for="numPlayers">Select Number of Players</label>
+            <select name="numPlayers" id="numPlayers" required>
+                <% for (let i = 3; i <= 6; i++) { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <% } %>
+            </select>
+            <button type="button" onclick="updatePlayerFields()" id="nextButton">Next</button>
+        </form>
+
+        <script src="/scripts.js"></script>
     </body>
 </html>
